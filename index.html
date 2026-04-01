@@ -626,7 +626,7 @@
           <p>Full Sail University</p>
         </div>
         <div class="bio-card">
-          <h3>BA in English, Minor in Film</h3>
+          <h3>BA in English</h3>
           <p>Florida State University</p>
         </div>
         <div class="bio-card">
@@ -655,7 +655,7 @@
           <span class="contact-icon">✉️</span>
           <div>
             <h4>Email</h4>
-            <a href="mailto:ian@ianseisumsdavis.com">ian@ianseisumsdavis.com</a>
+            <a id="email-link" href="#">Email</a>
           </div>
         </div>
         <div class="contact-item">
@@ -669,7 +669,7 @@
           <span class="contact-icon">📞</span>
           <div>
             <h4>Phone</h4>
-            <img src="ian-s-davis-ph.jpg" alt="Phone number" style="height:1.4rem;vertical-align:middle;border-radius:3px;">
+            <a id="phone-link" href="#">Phone</a>
           </div>
         </div>
         <div class="contact-item">
@@ -692,8 +692,31 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>&copy; 2026 Ian Seisums Davis &mdash; Sales Enablement Professional</p>
+    <p>&copy; 2026 Ian Seisums Davis. Built with purpose.</p>
   </footer>
 
+  <script>
+    // Email assembly — keeps address out of HTML source
+    const user = 'ianoftheyear';
+    const domain = 'gmail.com';
+    const email = user + '@' + domain;
+    const emailLink = document.getElementById('email-link');
+    if (emailLink) {
+      emailLink.href = 'mailto:' + email;
+      emailLink.textContent = email;
+    }
+
+    // Phone assembly — keeps number out of HTML source
+    const areaCode = '407';
+    const prefix = '267';
+    const line = '6891';
+    const phone = areaCode + prefix + line;
+    const phoneFormatted = '(' + areaCode + ') ' + prefix + '-' + line;
+    const phoneLink = document.getElementById('phone-link');
+    if (phoneLink) {
+      phoneLink.href = 'tel:' + phone;
+      phoneLink.textContent = phoneFormatted;
+    }
+  </script>
 </body>
 </html>
