@@ -292,6 +292,53 @@
 
     .exp-body p { font-size: .88rem; color: var(--muted); }
 
+    .exp-body .exp-note {
+      font-size: .83rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: .75rem;
+    }
+
+    .exp-body .exp-section-label {
+      font-size: .78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--accent);
+      margin: .9rem 0 .35rem;
+    }
+
+    .exp-body ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: .35rem;
+    }
+
+    .exp-body ul li {
+      font-size: .88rem;
+      color: var(--muted);
+      padding-left: 1.1rem;
+      position: relative;
+      line-height: 1.55;
+    }
+
+    .exp-body ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: .8rem;
+      top: .05em;
+    }
+
+    .exp-body ul li strong {
+      color: var(--navy);
+      font-weight: 700;
+    }
+
     /* ── SAMPLES ── */
     #samples { background: #f6f9ff; }
 
@@ -428,7 +475,7 @@
     <div class="avatar"><img src="ian-s-davis.jpg" alt="Ian Seisums Davis"></div>
     <h1>Ian Seisums Davis</h1>
     <p class="title">Sales Enablement Leader | Global GTM Enablement | Revenue Productivity | Seller Readiness</p>
-    <p class="hero-tagline">Building the systems that make sellers great.</p>
+    <p class="hero-tagline">Building the systems that turn sellers into quota-crushers.</p>
     <div class="hero-cta">
       <a href="#contact" class="btn btn-primary">Get in Touch</a>
       <a href="#skills" class="btn btn-outline">View Skills</a>
@@ -540,7 +587,24 @@
           <div class="exp-body">
             <h3>Senior Sales Enablement Program Manager <span style="font-weight:400;color:var(--muted);font-size:.85rem;">(de facto Enablement Program Owner)</span></h3>
             <div class="exp-meta">Amazon Web Services (AWS) <span>Mar 2021 – Jan 2026</span></div>
-            <p>Held an HR title of Senior Technical Writer but operated exclusively as a senior enablement program owner — helping plan, build, and operate multiple flagship WWFE programs from day one. Built and owned the Industry Accreditation Program — the enablement foundation for AWS's transformation to an industry vertical sales model. Scaled it from 8 to 18 verticals, driving completion by 17,000+ of AWS's 35,000 worldwide field sellers and partners across 30 countries, contributing to $650M+ in incremental revenue. AWS Business Intelligence analysis found sellers who completed L100 and L200 accreditations showed a 1.7% higher win rate over the following six months. Programs were built on MEDDPICC and AWS's internal sales methodology (AWOS: AWS Way of Selling), embedding these frameworks directly into certification architecture and assessment design. Also served as a founding member of the Content Bar Raisers, holding publishing authority across a library of 50,000+ enablement assets. Mentored and guided a cohort of three technical writers through their own transitions into enablement roles — leading without direct managerial authority. Designed an AI-powered pitch evaluation system that eliminated 50+ hours per week of manual manager review, and produced the flagship Amplify Your Sales Skills series through 100+ SME interviews.</p>
+            <p class="exp-note">Held an HR title of Senior Technical Writer but operated exclusively as a senior enablement program owner — planning, building, and running multiple flagship WWFE programs from day one.</p>
+
+            <div class="exp-section-label">Industry Accreditation Program — Crown Jewel</div>
+            <ul>
+              <li>Built and owned the enablement foundation for AWS's transformation to an <strong>industry vertical sales model</strong></li>
+              <li>Scaled from <strong>8 → 18 industry verticals</strong>, reaching <strong>17,000+ of AWS's 35,000 worldwide field sellers and partners</strong> across 30 countries</li>
+              <li>Contributed to <strong>$650M+ in incremental revenue</strong></li>
+              <li>Sellers completing L100 and L200 accreditations showed a <strong>1.7% higher win rate</strong> in the following six months (per AWS Business Intelligence analysis)</li>
+              <li>Embedded <strong>MEDDPICC</strong> and AWS Way of Selling (AWOS) directly into certification architecture and assessment design</li>
+            </ul>
+
+            <div class="exp-section-label">Additional Impact</div>
+            <ul>
+              <li>Designed an <strong>AI-powered pitch evaluation system</strong> eliminating <strong>50+ hours/week</strong> of manual manager review</li>
+              <li>Founding member of the <strong>Content Bar Raisers</strong> — publishing authority across a library of <strong>50,000+ enablement assets</strong></li>
+              <li>Produced the flagship <em>Amplify Your Sales Skills</em> series through <strong>100+ SME interviews</strong></li>
+              <li>Mentored three technical writers through transitions into enablement roles — leading without direct managerial authority</li>
+            </ul>
           </div>
         </div>
 
@@ -551,7 +615,11 @@
           <div class="exp-body">
             <h3>Technical Writer</h3>
             <div class="exp-meta">Epic Games <span>Nov 2018 – Mar 2021</span></div>
-            <p>Embedded technical writer on the Unreal Engine platform team, responsible for developer-facing documentation in partnership with first-party platform teams at Microsoft, Sony, Nintendo, and Google. Served as the primary documentation contact for external developers building on Unreal Engine. Modernized the team style guide from a static PDF to a living wiki, and standardized the feature intake process between engineering and documentation — increasing the percentage of features fully documented on release day by 10%.</p>
+            <ul>
+              <li>Embedded technical writer on the <strong>Unreal Engine platform team</strong> — primary documentation contact for external developers building on UE, in partnership with platform teams at <strong>Microsoft, Sony, Nintendo, and Google</strong></li>
+              <li>Modernized the team style guide from a static PDF to a <strong>living wiki</strong>, eliminating bottlenecks in documentation handoffs</li>
+              <li>Standardized the feature intake process between engineering and documentation — increasing features <strong>fully documented on release day by 10%</strong></li>
+            </ul>
           </div>
         </div>
 
@@ -562,7 +630,12 @@
           <div class="exp-body">
             <h3>Technical Writer</h3>
             <div class="exp-meta">Bohemia Interactive Simulations <span>Aug 2015 – Nov 2018</span></div>
-            <p>Technical writer supporting Virtual Battlespace, a tactical training simulation platform used by DoD, NATO, and law enforcement agencies worldwide. Held sole US person status with exclusive responsibility for all ITAR-controlled content across the product suite. Co-organized Tactical Thursdays, a weekly internal testing program running live mission scenarios to validate new features in operational context. Supported customer-facing demos and co-developed scenarios for I/ITSEC, the defense simulation industry's flagship annual trade show.</p>
+            <ul>
+              <li>Technical writer for <strong>Virtual Battlespace</strong> — a tactical training simulation platform used by <strong>DoD, NATO, and law enforcement agencies worldwide</strong></li>
+              <li>Held <strong>sole US person status</strong> with exclusive responsibility for all <strong>ITAR-controlled content</strong> across the product suite</li>
+              <li>Co-organized <em>Tactical Thursdays</em> — a weekly internal live-fire testing program running mission scenarios to validate new features in operational context</li>
+              <li>Supported customer-facing demos and co-developed scenarios for <strong>I/ITSEC</strong>, the defense simulation industry's flagship annual trade show</li>
+            </ul>
           </div>
         </div>
 
@@ -573,7 +646,11 @@
           <div class="exp-body">
             <h3>Associate Course Director</h3>
             <div class="exp-meta">Full Sail University <span>Jan 2005 – Aug 2015</span></div>
-            <p>Designed and delivered competency-based curriculum for Technical Writing, Engineering Composition, and Professional Communication across a 10-year tenure, managing cohorts of 20–30 students per term. Built courses from scratch, developed syllabi, learning objectives, rubrics, and assessments grounded in industry-relevant outcomes — applying instructional design principles that directly informed later enablement program architecture.</p>
+            <ul>
+              <li>Designed and delivered <strong>competency-based curriculum</strong> for Technical Writing, Engineering Composition, and Professional Communication — managing cohorts of <strong>20–30 students per term</strong> across a 10-year tenure</li>
+              <li>Built courses from scratch: syllabi, learning objectives, rubrics, and assessments grounded in industry-relevant outcomes</li>
+              <li>Applied <strong>instructional design principles</strong> that directly informed the enablement program architecture built later at AWS</li>
+            </ul>
           </div>
         </div>
 
