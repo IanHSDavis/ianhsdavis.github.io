@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ian Seisums Davis | Sales Enablement Professional</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0d1b2a;
+      --slate:  #1b3a5c;
+      --accent: #2a7de1;
+      --light:  #e8f0fb;
+      --muted:  #6b7c93;
+      --white:  #ffffff;
+      --text:   #1a1a2e;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.65;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--navy);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 2rem;
+      height: 60px;
+    }
+
+    nav .logo {
+      color: var(--white);
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: .04em;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: #a8c4e0;
+      text-decoration: none;
+      font-size: .9rem;
+      letter-spacing: .03em;
+      transition: color .2s;
+    }
+
+    nav a:hover { color: var(--white); }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--slate) 100%);
+      color: var(--white);
+      padding: 7rem 2rem 5rem;
+      text-align: center;
+    }
+
+    .avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      margin: 0 auto 1.5rem;
+      border: 4px solid rgba(255,255,255,.3);
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,.35);
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -.01em;
+    }
+
+    .hero .title {
+      margin-top: .5rem;
+      font-size: 1.1rem;
+      color: #a8c4e0;
+      font-weight: 400;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .hero-tagline {
+      margin-top: 1.1rem;
+      font-size: 1.15rem;
+      color: rgba(255,255,255,.85);
+      font-style: italic;
+      font-weight: 300;
+      letter-spacing: .01em;
+    }
+
+    .hero-cta {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: .65rem 1.6rem;
+      border-radius: 6px;
+      font-size: .9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity .2s, transform .15s;
+    }
+
+    .btn:hover { opacity: .88; transform: translateY(-1px); }
+
+    .btn-primary { background: var(--accent); color: var(--white); }
+    .btn-outline  { border: 2px solid rgba(255,255,255,.5); color: var(--white); }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 2rem; }
+    .container { max-width: 860px; margin: 0 auto; }
+
+    .section-label {
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: .5rem;
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── BIO ── */
+    #about { background: var(--white); }
+
+    .bio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 600px) { .bio-grid { grid-template-columns: 1fr; } }
+
+    .bio-card {
+      background: var(--light);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+
+    .bio-card h3 {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--slate);
+      margin-bottom: .5rem;
+    }
+
+    .bio-card p { font-size: .93rem; color: var(--muted); }
+
+    /* ── SKILLS ── */
+    #skills { background: #f6f9ff; }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .skill-card {
+      background: var(--white);
+      border: 1px solid #dce8f8;
+      border-radius: 10px;
+      padding: 1.4rem 1.5rem;
+      transition: box-shadow .2s, transform .2s;
+    }
+
+    .skill-card:hover {
+      box-shadow: 0 6px 24px rgba(42,125,225,.12);
+      transform: translateY(-3px);
+    }
+
+    .skill-icon {
+      font-size: 1.6rem;
+      margin-bottom: .6rem;
+    }
+
+    .skill-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: .35rem;
+    }
+
+    .skill-card p { font-size: .86rem; color: var(--muted); }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--white); }
+
+    .exp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .exp-card {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      border: 1px solid #dce8f8;
+      border-radius: 10px;
+      padding: 1.5rem;
+      transition: box-shadow .2s;
+    }
+
+    .exp-card:hover { box-shadow: 0 4px 20px rgba(42,125,225,.1); }
+
+    .exp-logo {
+      width: 52px;
+      height: 52px;
+      border-radius: 10px;
+      border: 1px solid #e4edf8;
+      object-fit: contain;
+      flex-shrink: 0;
+      background: var(--white);
+      padding: 4px;
+    }
+
+    .exp-logo-fallback {
+      width: 52px;
+      height: 52px;
+      border-radius: 10px;
+      border: 1px solid #e4edf8;
+      background: var(--light);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .7rem;
+      font-weight: 700;
+      color: var(--slate);
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .exp-body { flex: 1; }
+
+    .exp-body h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: .15rem;
+    }
+
+    .exp-meta {
+      font-size: .85rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: .4rem;
+    }
+
+    .exp-meta span {
+      color: var(--muted);
+      font-weight: 400;
+      margin-left: .4rem;
+    }
+
+    .exp-body p { font-size: .88rem; color: var(--muted); }
+
+    /* ── SAMPLES ── */
+    #samples { background: #f6f9ff; }
+
+    .samples-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .sample-card {
+      background: var(--white);
+      border: 1px solid #dce8f8;
+      border-radius: 10px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+      transition: box-shadow .2s, transform .2s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .sample-card:hover {
+      box-shadow: 0 6px 24px rgba(42,125,225,.12);
+      transform: translateY(-3px);
+    }
+
+    .sample-type {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--accent);
+      background: var(--light);
+      padding: .25rem .6rem;
+      border-radius: 4px;
+      width: fit-content;
+    }
+
+    .sample-card h3 {
+      font-size: .97rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.35;
+    }
+
+    .sample-card p {
+      font-size: .85rem;
+      color: var(--muted);
+      flex: 1;
+    }
+
+    .sample-link {
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--navy); color: var(--white); }
+    #contact h2 { color: var(--white); }
+    #contact .section-label { color: #60a4e8; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: .85rem;
+      background: rgba(255,255,255,.07);
+      border-radius: 10px;
+      padding: 1.2rem 1.4rem;
+    }
+
+    .contact-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      margin-top: .1rem;
+    }
+
+    .contact-item h4 {
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: #a8c4e0;
+      margin-bottom: .2rem;
+    }
+
+    .contact-item a, .contact-item span {
+      color: var(--white);
+      text-decoration: none;
+      font-size: .95rem;
+      font-weight: 500;
+    }
+
+    .contact-item a:hover { text-decoration: underline; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #06101a;
+      color: #4a6580;
+      text-align: center;
+      font-size: .82rem;
+      padding: 1.4rem 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="logo">Ian Seisums Davis</span>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#samples">Work Samples</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="avatar"><img src="ian-s-davis.jpg" alt="Ian Seisums Davis"></div>
+    <h1>Ian Seisums Davis</h1>
+    <p class="title">Sales Enablement Leader | Global GTM Enablement | Revenue Productivity | Seller Readiness</p>
+    <p class="hero-tagline">Building the systems that make sellers great.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-primary">Get in Touch</a>
+      <a href="#skills" class="btn btn-outline">View Skills</a>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <p class="section-label">About Me</p>
+      <h2>Turning Knowledge into Revenue</h2>
+      <p>
+        Revenue Enablement and Sales Enablement leader with 11 years of experience designing and operating
+        enablement programs inside complex technical organizations — 5 years in enablement and program management
+        and 6 years in technical writing. Built and scaled a flagship global accreditation program at AWS that
+        became the credentialing foundation for a 35,000-person worldwide field sales organization. Expertise
+        includes GTM readiness, competency-based certification architecture, enablement technology ecosystems,
+        and AI-powered evaluation tools.
+      </p>
+
+      <div class="bio-grid">
+        <div class="bio-card">
+          <h3>Where I Work</h3>
+          <p>My work sits at the intersection of sales strategy, learning design, and program architecture.
+          I specialize in building systems that move sellers from onboarding to performance quickly.</p>
+        </div>
+        <div class="bio-card">
+          <h3>Areas of Focus</h3>
+          <p>Sales enablement strategy, GTM readiness programs, seller onboarding and certification,
+          enablement technology ecosystems, and AI-driven sales coaching systems.</p>
+        </div>
+        <div class="bio-card">
+          <h3>My Background</h3>
+          <p>I started my career as a technical writer — translating complex systems into clear, usable content
+          for engineers and developers. That foundation shapes how I approach enablement: with precision,
+          structure, and a deep respect for how people actually learn.</p>
+        </div>
+        <div class="bio-card">
+          <h3>Currently Exploring</h3>
+          <p>Building personal projects with Claude Code and the Anthropic API — exploring how AI tools are reshaping the way enablement professionals work.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <p class="section-label">Core Competencies</p>
+      <h2>Skills &amp; Expertise</h2>
+
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon">🎯</div>
+          <h3>Sales Enablement Strategy</h3>
+          <p>Designing enablement systems that align directly to revenue goals, GTM priorities, and seller performance outcomes.</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🚀</div>
+          <h3>GTM Readiness &amp; Launch Enablement</h3>
+          <p>Building launch readiness programs that equip field teams to sell new products and enter new markets with confidence.</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🏅</div>
+          <h3>Competency-Based Accreditation</h3>
+          <p>Architecting multi-tier certification programs with progressive assessment methodologies tied to measurable seller readiness.</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🤝</div>
+          <h3>Partner &amp; Channel Enablement</h3>
+          <p>Extending enablement programs to partner ecosystems and channel organizations at global scale.</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">📊</div>
+          <h3>Enablement Analytics</h3>
+          <p>Building executive dashboards and MBR reporting that track certification attainment, seller readiness, and program impact.</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🤖</div>
+          <h3>AI-Powered Sales Coaching</h3>
+          <p>Designing AI-driven pitch evaluation and roleplay systems that scale coaching and eliminate manual manager review burden.</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🛠️</div>
+          <h3>Enablement Technology</h3>
+          <p>Administering Highspot, MindTickle, Cornerstone, Articulate Rise/Storyline, Salesforce, and Credly at enterprise scale.</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">✏️</div>
+          <h3>Learning Experience Design</h3>
+          <p>Applying instructional design principles to build programs grounded in competency-based outcomes and adult learning theory.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="container">
+      <p class="section-label">Work History</p>
+      <h2>Experience</h2>
+
+      <div class="exp-list">
+
+        <div class="exp-card">
+          <img class="exp-logo" src="https://logo.clearbit.com/aws.amazon.com" alt="AWS logo"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="exp-logo-fallback" style="display:none">AWS</div>
+          <div class="exp-body">
+            <h3>Senior Sales Enablement Program Manager <span style="font-weight:400;color:var(--muted);font-size:.85rem;">(de facto Enablement Program Owner)</span></h3>
+            <div class="exp-meta">Amazon Web Services (AWS) <span>Mar 2021 – Jan 2026</span></div>
+            <p>Held an HR title of Senior Technical Writer but operated exclusively as a senior enablement program owner — helping plan, build, and operate multiple flagship WWFE programs from day one. Built and owned the Industry Accreditation Program — the enablement foundation for AWS's transformation to an industry vertical sales model. Scaled it from 8 to 18 verticals, driving completion by 17,000+ of AWS's 35,000 worldwide field sellers and partners across 30 countries, contributing to $650M+ in incremental revenue. AWS Business Intelligence analysis found sellers who completed L100 and L200 accreditations showed a 1.7% higher win rate over the following six months. Programs were built on MEDDPICC and AWS's internal sales methodology (AWOS: AWS Way of Selling), embedding these frameworks directly into certification architecture and assessment design. Also served as a founding member of the Content Bar Raisers, holding publishing authority across a library of 50,000+ enablement assets. Mentored and guided a cohort of three technical writers through their own transitions into enablement roles — leading without direct managerial authority. Designed an AI-powered pitch evaluation system that eliminated 50+ hours per week of manual manager review, and produced the flagship Amplify Your Sales Skills series through 100+ SME interviews.</p>
+          </div>
+        </div>
+
+        <div class="exp-card">
+          <img class="exp-logo" src="https://logo.clearbit.com/epicgames.com" alt="Epic Games logo"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="exp-logo-fallback" style="display:none">Epic</div>
+          <div class="exp-body">
+            <h3>Technical Writer</h3>
+            <div class="exp-meta">Epic Games <span>Nov 2018 – Mar 2021</span></div>
+            <p>Embedded technical writer on the Unreal Engine platform team, responsible for developer-facing documentation in partnership with first-party platform teams at Microsoft, Sony, Nintendo, and Google. Served as the primary documentation contact for external developers building on Unreal Engine. Modernized the team style guide from a static PDF to a living wiki, and standardized the feature intake process between engineering and documentation — increasing the percentage of features fully documented on release day by 10%.</p>
+          </div>
+        </div>
+
+        <div class="exp-card">
+          <img class="exp-logo" src="https://logo.clearbit.com/bisimulations.com" alt="Bohemia Interactive Simulations logo"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="exp-logo-fallback" style="display:none">BISim</div>
+          <div class="exp-body">
+            <h3>Technical Writer</h3>
+            <div class="exp-meta">Bohemia Interactive Simulations <span>Aug 2015 – Nov 2018</span></div>
+            <p>Technical writer supporting Virtual Battlespace, a tactical training simulation platform used by DoD, NATO, and law enforcement agencies worldwide. Held sole US person status with exclusive responsibility for all ITAR-controlled content across the product suite. Co-organized Tactical Thursdays, a weekly internal testing program running live mission scenarios to validate new features in operational context. Supported customer-facing demos and co-developed scenarios for I/ITSEC, the defense simulation industry's flagship annual trade show.</p>
+          </div>
+        </div>
+
+        <div class="exp-card">
+          <img class="exp-logo" src="https://logo.clearbit.com/fullsail.edu" alt="Full Sail University logo"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="exp-logo-fallback" style="display:none">Full Sail</div>
+          <div class="exp-body">
+            <h3>Associate Course Director</h3>
+            <div class="exp-meta">Full Sail University <span>Jan 2005 – Aug 2015</span></div>
+            <p>Designed and delivered competency-based curriculum for Technical Writing, Engineering Composition, and Professional Communication across a 10-year tenure, managing cohorts of 20–30 students per term. Built courses from scratch, developed syllabi, learning objectives, rubrics, and assessments grounded in industry-relevant outcomes — applying instructional design principles that directly informed later enablement program architecture.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SAMPLES -->
+  <section id="samples">
+    <div class="container">
+      <p class="section-label">Work Samples</p>
+      <h2>Communication Craft</h2>
+      <p>My enablement work at AWS is internal and confidential. The samples below are from my technical writing career and show the documentation foundation that informs how I build enablement programs today.</p>
+
+      <div class="samples-grid">
+
+        <a class="sample-card" href="Gears_Studio_Community.pdf" target="_blank" rel="noopener">
+          <span class="sample-type">📄 PDF</span>
+          <h3>Gears Studio Community</h3>
+          <p>Community documentation and instructional content produced during tenure at Bohemia Interactive Simulations.</p>
+          <span class="sample-link">View PDF &rarr;</span>
+        </a>
+
+        <a class="sample-card" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/installing-unreal-engine?application_version=4.27" target="_blank" rel="noopener">
+          <span class="sample-type">🌐 Live Doc</span>
+          <h3>Installing Unreal Engine</h3>
+          <p>Official Unreal Engine 4.27 installation guide for developers. Written and maintained during role as Technical Writer at Epic Games.</p>
+          <span class="sample-link">View Documentation &rarr;</span>
+        </a>
+
+        <a class="sample-card" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/mobile-previewer?application_version=4.27" target="_blank" rel="noopener">
+          <span class="sample-type">🌐 Live Doc</span>
+          <h3>Mobile Previewer</h3>
+          <p>Unreal Engine 4.27 documentation for the Mobile Previewer tool, enabling developers to test projects across mobile platforms from the editor.</p>
+          <span class="sample-link">View Documentation &rarr;</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="container">
+      <p class="section-label">Education &amp; Certifications</p>
+      <h2>Credentials</h2>
+      <div class="bio-grid">
+        <div class="bio-card">
+          <h3>MFA in Creative Writing</h3>
+          <p>Full Sail University</p>
+        </div>
+        <div class="bio-card">
+          <h3>BA in English, Minor in Film</h3>
+          <p>Florida State University</p>
+        </div>
+        <div class="bio-card">
+          <h3>AWS Cloud Practitioner</h3>
+          <p>Amazon Web Services</p>
+        </div>
+        <div class="bio-card">
+          <h3>Anthropic Academy</h3>
+          <p>Claude 101 | AI Fluency | Introduction to MCP | Claude Code in Action</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <p class="section-label">Contact</p>
+      <h2>Let's Connect</h2>
+      <p style="color:#a8c4e0;">
+        I'm always open to new conversations — whether it's a collaboration, a new opportunity, or just talking shop about sales enablement.
+      </p>
+
+      <div class="contact-grid">
+        <div class="contact-item">
+          <span class="contact-icon">✉️</span>
+          <div>
+            <h4>Email</h4>
+            <a href="mailto:ian@ianseisumsdavis.com">ian@ianseisumsdavis.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">💼</span>
+          <div>
+            <h4>LinkedIn</h4>
+            <a href="https://www.linkedin.com/in/ian-h-seisums-davis" target="_blank" rel="noopener">linkedin.com/in/ian-h-seisums-davis</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">📞</span>
+          <div>
+            <h4>Phone</h4>
+            <img src="ian-s-davis-ph.jpg" alt="Phone number" style="height:1.4rem;vertical-align:middle;border-radius:3px;">
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">📍</span>
+          <div>
+            <h4>Location</h4>
+            <span>Northern Virginia (open to relocation)</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">🕐</span>
+          <div>
+            <h4>Availability</h4>
+            <span>Open to opportunities</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 Ian Seisums Davis &mdash; Sales Enablement Professional</p>
+  </footer>
+
+</body>
+</html>
