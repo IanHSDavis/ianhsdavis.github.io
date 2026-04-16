@@ -3,38 +3,61 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-  <title>Ian Seisums Davis | Sales Enablement Professional</title>
+  <title>Ian Seisums Davis | Sales Enablement Leader</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy:   #0d1b2a;
-      --slate:  #1b3a5c;
-      --accent: #2a7de1;
-      --light:  #e8f0fb;
-      --muted:  #6b7c93;
-      --white:  #ffffff;
-      --text:   #1a1a2e;
+      --navy:    #0d1b2a;
+      --slate:   #1b3a5c;
+      --accent:  #2a7de1;
+      --accent2: #6c5ce7;
+      --amber:   #e19a2a;
+      --teal:    #2ae1a0;
+      --light:   #edf2fa;
+      --muted:   #64748b;
+      --white:   #ffffff;
+      --text:    #1a1a2e;
+      --card-border: rgba(42,125,225,.12);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
       color: var(--text);
       background: var(--white);
       line-height: 1.65;
+      overflow-x: hidden;
     }
+
+    /* ── REVEAL ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+    .reveal-delay-4 { transition-delay: .4s; }
 
     /* ── NAV ── */
     nav {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: var(--navy);
+      background: rgba(13,27,42,.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -46,41 +69,131 @@
       color: var(--white);
       font-weight: 700;
       font-size: 1.05rem;
-      letter-spacing: .04em;
+      letter-spacing: .02em;
     }
 
-    nav ul {
+    nav .nav-links {
       list-style: none;
       display: flex;
-      gap: 2rem;
+      gap: 1.8rem;
     }
 
     nav a {
-      color: #a8c4e0;
+      color: rgba(168,196,224,.85);
       text-decoration: none;
-      font-size: .9rem;
-      letter-spacing: .03em;
+      font-size: .85rem;
+      font-weight: 500;
+      letter-spacing: .02em;
       transition: color .2s;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width .25s ease;
     }
 
     nav a:hover { color: var(--white); }
+    nav a:hover::after { width: 100%; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: transform .3s, opacity .3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      nav .nav-links {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: rgba(13,27,42,.96);
+        backdrop-filter: blur(16px);
+        flex-direction: column;
+        padding: 1.5rem 2rem;
+        gap: 1.2rem;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+      }
+      nav .nav-links.open { display: flex; }
+    }
 
     /* ── HERO ── */
     .hero {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--slate) 100%);
+      position: relative;
+      background: linear-gradient(135deg, #0a1628 0%, #132b4a 50%, #1a3d5e 100%);
       color: var(--white);
-      padding: 7rem 2rem 5rem;
+      padding: 2.5rem 2rem 2.5rem;
       text-align: center;
+      overflow: hidden;
     }
 
+    /* Dot grid pattern */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+
+    /* Gradient orbs */
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(42,125,225,.15) 0%, transparent 70%);
+      top: -200px;
+      right: -100px;
+      pointer-events: none;
+    }
+
+    .hero-orb {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(108,92,231,.1) 0%, transparent 70%);
+      bottom: -200px;
+      left: -100px;
+      pointer-events: none;
+    }
+
+    .hero > *:not(.hero-orb) { position: relative; z-index: 1; }
+    .hero-orb { position: absolute; }
+
     .avatar {
-      width: 140px;
-      height: 140px;
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
-      margin: 0 auto 1.5rem;
-      border: 4px solid rgba(255,255,255,.3);
+      margin: 0 auto 1.8rem;
+      border: 3px solid rgba(255,255,255,.2);
       overflow: hidden;
-      box-shadow: 0 8px 32px rgba(0,0,0,.35);
+      box-shadow: 0 12px 40px rgba(0,0,0,.4), 0 0 0 6px rgba(42,125,225,.15);
     }
 
     .avatar img {
@@ -91,31 +204,32 @@
     }
 
     .hero h1 {
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 700;
-      letter-spacing: -.01em;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -.02em;
+      line-height: 1.15;
     }
 
     .hero .title {
-      margin-top: .5rem;
-      font-size: 1.1rem;
-      color: #a8c4e0;
-      font-weight: 400;
-      letter-spacing: .06em;
+      margin-top: .6rem;
+      font-size: .85rem;
+      color: rgba(168,196,224,.7);
+      font-weight: 500;
+      letter-spacing: .08em;
       text-transform: uppercase;
     }
 
     .hero-tagline {
-      margin-top: 1.1rem;
-      font-size: 1.15rem;
-      color: rgba(255,255,255,.85);
+      margin-top: 1.2rem;
+      font-size: 1.2rem;
+      color: rgba(255,255,255,.8);
       font-style: italic;
       font-weight: 300;
       letter-spacing: .01em;
     }
 
     .hero-cta {
-      margin-top: 2rem;
+      margin-top: 2.2rem;
       display: flex;
       gap: 1rem;
       justify-content: center;
@@ -124,46 +238,134 @@
 
     .btn {
       display: inline-block;
-      padding: .65rem 1.6rem;
-      border-radius: 6px;
-      font-size: .9rem;
+      padding: .7rem 1.8rem;
+      border-radius: 8px;
+      font-size: .88rem;
       font-weight: 600;
       text-decoration: none;
-      transition: opacity .2s, transform .15s;
+      transition: all .25s cubic-bezier(.22,1,.36,1);
+      letter-spacing: .01em;
     }
 
-    .btn:hover { opacity: .88; transform: translateY(-1px); }
+    .btn:hover { transform: translateY(-2px); }
 
-    .btn-primary { background: var(--accent); color: var(--white); }
-    .btn-outline  { border: 2px solid rgba(255,255,255,.5); color: var(--white); }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+      box-shadow: 0 4px 16px rgba(42,125,225,.35);
+    }
+    .btn-primary:hover { box-shadow: 0 6px 24px rgba(42,125,225,.5); }
+
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,.35);
+      color: var(--white);
+    }
+    .btn-outline:hover { border-color: var(--amber); color: var(--amber); background: rgba(225,154,42,.06); }
+
+    /* ── STATS STRIP ── */
+    .stats-strip {
+      background: var(--navy);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      padding: 2.5rem 2rem;
+      position: relative;
+    }
+
+    .stats-grid {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .stat-item h3 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+    }
+
+    .stat-item.stat-amber h3 {
+      background: linear-gradient(135deg, var(--amber), #f0c060);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-item.stat-blue h3 {
+      background: var(--accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-item.stat-teal h3 {
+      background: linear-gradient(135deg, var(--teal), #60e8c8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-item p {
+      font-size: .78rem;
+      color: rgba(168,196,224,.65);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-top: .3rem;
+    }
+
+    /* ── SECTION DIVIDERS ── */
+    .section-divider {
+      position: relative;
+      height: 80px;
+      overflow: hidden;
+    }
+
+    .section-divider svg {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+    }
 
     /* ── SECTIONS ── */
     section { padding: 5rem 2rem; }
-    .container { max-width: 860px; margin: 0 auto; }
+    .container { max-width: 880px; margin: 0 auto; }
 
     .section-label {
       text-transform: uppercase;
-      letter-spacing: .1em;
-      font-size: .75rem;
+      letter-spacing: .12em;
+      font-size: .72rem;
       font-weight: 700;
       color: var(--accent);
       margin-bottom: .5rem;
     }
 
     h2 {
-      font-size: clamp(1.6rem, 3vw, 2.1rem);
-      font-weight: 700;
+      font-size: clamp(1.7rem, 3vw, 2.2rem);
+      font-weight: 800;
       color: var(--navy);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.2rem;
+      letter-spacing: -.02em;
     }
 
     /* ── BIO ── */
     #about { background: var(--white); }
+    #about > .container > p { color: var(--muted); font-size: .95rem; max-width: 720px; }
 
     .bio-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2rem;
+      gap: 1.25rem;
       margin-top: 2rem;
     }
 
@@ -171,83 +373,172 @@
 
     .bio-card {
       background: var(--light);
-      border-radius: 10px;
+      border-radius: 12px;
       padding: 1.5rem;
+      border: 1px solid rgba(42,125,225,.06);
+      transition: box-shadow .3s, transform .3s;
+    }
+
+    .bio-card:hover {
+      box-shadow: 0 8px 30px rgba(42,125,225,.08);
+      transform: translateY(-2px);
     }
 
     .bio-card h3 {
-      font-size: .95rem;
+      font-size: .88rem;
       font-weight: 700;
       color: var(--slate);
-      margin-bottom: .5rem;
+      margin-bottom: .45rem;
+      letter-spacing: -.01em;
     }
 
-    .bio-card p { font-size: .93rem; color: var(--muted); }
+    .bio-card p { font-size: .88rem; color: var(--muted); line-height: 1.6; }
 
     /* ── SKILLS ── */
-    #skills { background: #f6f9ff; }
+    #skills { background: #f8faff; }
 
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 1.25rem;
+      gap: 1.1rem;
       margin-top: 2rem;
     }
 
     .skill-card {
       background: var(--white);
-      border: 1px solid #dce8f8;
-      border-radius: 10px;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
       padding: 1.4rem 1.5rem;
-      transition: box-shadow .2s, transform .2s;
+      transition: box-shadow .3s, transform .3s;
     }
 
     .skill-card:hover {
-      box-shadow: 0 6px 24px rgba(42,125,225,.12);
+      box-shadow: 0 8px 30px rgba(42,125,225,.12);
       transform: translateY(-3px);
     }
 
     .skill-icon {
-      font-size: 1.6rem;
-      margin-bottom: .6rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: .75rem;
+      background: linear-gradient(135deg, rgba(42,125,225,.1), rgba(108,92,231,.1));
     }
+
+    .skill-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--accent);
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .skill-card.amber .skill-icon {
+      background: linear-gradient(135deg, rgba(225,154,42,.12), rgba(240,192,96,.12));
+    }
+    .skill-card.amber .skill-icon svg { stroke: var(--amber); }
+
+    .skill-card.teal .skill-icon {
+      background: linear-gradient(135deg, rgba(42,225,160,.12), rgba(96,232,200,.12));
+    }
+    .skill-card.teal .skill-icon svg { stroke: var(--teal); }
 
     .skill-card h3 {
-      font-size: 1rem;
+      font-size: .92rem;
       font-weight: 700;
       color: var(--navy);
-      margin-bottom: .35rem;
+      margin-bottom: .3rem;
+      letter-spacing: -.01em;
     }
 
-    .skill-card p { font-size: .86rem; color: var(--muted); }
+    .skill-card p { font-size: .84rem; color: var(--muted); line-height: 1.55; }
 
-    /* ── EXPERIENCE ── */
+    /* ── EXPERIENCE TIMELINE ── */
     #experience { background: var(--white); }
 
-    .exp-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      margin-top: 2rem;
+    .timeline {
+      position: relative;
+      margin-top: 2.5rem;
+      padding-left: 40px;
     }
 
-    .exp-card {
-      display: flex;
-      gap: 1.25rem;
-      align-items: flex-start;
-      border: 1px solid #dce8f8;
-      border-radius: 10px;
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent) 0%, var(--accent2) 25%, var(--amber) 55%, var(--amber) 75%, var(--teal) 100%);
+      border-radius: 2px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.5rem;
+    }
+
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    .timeline-dot {
+      position: absolute;
+      left: -33px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--white);
+      box-shadow: 0 0 0 3px rgba(42,125,225,.2);
+      z-index: 1;
+    }
+
+    .timeline-item:first-child .timeline-dot {
+      width: 16px;
+      height: 16px;
+      left: -35px;
+      top: 4px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 4px rgba(42,125,225,.2);
+    }
+
+    .timeline-dot.amber {
+      background: var(--amber);
+      box-shadow: 0 0 0 3px rgba(225,154,42,.2);
+    }
+
+    .timeline-dot.teal {
+      background: var(--teal);
+      box-shadow: 0 0 0 3px rgba(42,225,160,.2);
+    }
+
+    .timeline-card {
+      background: var(--white);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
       padding: 1.5rem;
-      transition: box-shadow .2s;
+      transition: box-shadow .3s;
     }
 
-    .exp-card:hover { box-shadow: 0 4px 20px rgba(42,125,225,.1); }
+    .timeline-card:hover { box-shadow: 0 8px 30px rgba(42,125,225,.1); }
+
+    .timeline-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: .75rem;
+    }
 
     .exp-logo {
-      width: 52px;
-      height: 52px;
+      width: 48px;
+      height: 48px;
       border-radius: 10px;
-      border: 1px solid #e4edf8;
+      border: 1px solid rgba(42,125,225,.1);
       object-fit: contain;
       flex-shrink: 0;
       background: var(--white);
@@ -255,118 +546,129 @@
     }
 
     .exp-logo-fallback {
-      width: 52px;
-      height: 52px;
+      width: 48px;
+      height: 48px;
       border-radius: 10px;
-      border: 1px solid #e4edf8;
+      border: 1px solid rgba(42,125,225,.1);
       background: var(--light);
       flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: .7rem;
+      font-size: .65rem;
       font-weight: 700;
       color: var(--slate);
       text-align: center;
-      line-height: 1.2;
     }
 
-    .exp-body { flex: 1; }
-
-    .exp-body h3 {
-      font-size: 1rem;
+    .timeline-header-text h3 {
+      font-size: .95rem;
       font-weight: 700;
       color: var(--navy);
-      margin-bottom: .15rem;
+      margin-bottom: .1rem;
+      letter-spacing: -.01em;
+      line-height: 1.35;
+    }
+
+    .timeline-header-text h3 span {
+      font-weight: 400;
+      color: var(--muted);
+      font-size: .8rem;
     }
 
     .exp-meta {
-      font-size: .85rem;
+      font-size: .82rem;
       color: var(--accent);
       font-weight: 600;
-      margin-bottom: .4rem;
     }
 
     .exp-meta span {
       color: var(--muted);
       font-weight: 400;
-      margin-left: .4rem;
+      margin-left: .35rem;
     }
 
-    .exp-body p { font-size: .88rem; color: var(--muted); }
-
-    .exp-body .exp-note {
-      font-size: .83rem;
+    .timeline-card .exp-note {
+      font-size: .84rem;
       color: var(--muted);
       font-style: italic;
       margin-bottom: .75rem;
+      line-height: 1.55;
     }
 
-    .exp-body .exp-section-label {
-      font-size: .78rem;
+    .exp-section-label {
+      font-size: .72rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: .07em;
+      letter-spacing: .08em;
       color: var(--accent);
-      margin: .9rem 0 .35rem;
+      margin: 1rem 0 .4rem;
     }
 
-    .exp-body ul {
+    .timeline-card ul {
       list-style: none;
       padding: 0;
       margin: 0;
       display: flex;
       flex-direction: column;
-      gap: .35rem;
+      gap: .4rem;
     }
 
-    .exp-body ul li {
-      font-size: .88rem;
+    .timeline-card ul li {
+      font-size: .84rem;
       color: var(--muted);
-      padding-left: 1.1rem;
+      padding-left: 1.2rem;
       position: relative;
       line-height: 1.55;
     }
 
-    .exp-body ul li::before {
-      content: '→';
+    .timeline-card ul li::before {
+      content: '';
       position: absolute;
       left: 0;
-      color: var(--accent);
-      font-size: .8rem;
-      top: .05em;
+      top: .55em;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: .5;
     }
 
-    .exp-body ul li strong {
-      color: var(--navy);
-      font-weight: 700;
+    .timeline-card ul li strong { color: var(--navy); font-weight: 600; }
+
+    @media (max-width: 600px) {
+      .timeline { padding-left: 28px; }
+      .timeline::before { left: 8px; }
+      .timeline-dot { left: -26px; }
+      .timeline-item:first-child .timeline-dot { left: -28px; }
     }
 
     /* ── SAMPLES ── */
-    #samples { background: #f6f9ff; }
+    #samples { background: #f8faff; }
+    #samples > .container > p { color: var(--muted); font-size: .9rem; margin-bottom: .5rem; }
 
     .samples-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
       gap: 1.25rem;
-      margin-top: 2rem;
+      margin-top: 1.5rem;
     }
 
     .sample-card {
       background: var(--white);
-      border: 1px solid #dce8f8;
-      border-radius: 10px;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
       padding: 1.5rem;
       display: flex;
       flex-direction: column;
-      gap: .75rem;
-      transition: box-shadow .2s, transform .2s;
+      gap: .65rem;
+      transition: box-shadow .3s, transform .3s;
       text-decoration: none;
       color: inherit;
     }
 
     .sample-card:hover {
-      box-shadow: 0 6px 24px rgba(42,125,225,.12);
+      box-shadow: 0 8px 30px rgba(42,125,225,.12);
       transform: translateY(-3px);
     }
 
@@ -374,28 +676,29 @@
       display: inline-flex;
       align-items: center;
       gap: .35rem;
-      font-size: .72rem;
+      font-size: .7rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: .07em;
       color: var(--accent);
-      background: var(--light);
+      background: rgba(42,125,225,.08);
       padding: .25rem .6rem;
-      border-radius: 4px;
+      border-radius: 6px;
       width: fit-content;
     }
 
     .sample-card h3 {
-      font-size: .97rem;
+      font-size: .92rem;
       font-weight: 700;
       color: var(--navy);
       line-height: 1.35;
     }
 
     .sample-card p {
-      font-size: .85rem;
+      font-size: .84rem;
       color: var(--muted);
       flex: 1;
+      line-height: 1.55;
     }
 
     .sample-link {
@@ -404,15 +707,34 @@
       color: var(--accent);
     }
 
+    /* ── EDUCATION ── */
+    #education { background: var(--white); }
+
     /* ── CONTACT ── */
-    #contact { background: var(--navy); color: var(--white); }
+    #contact {
+      background: linear-gradient(135deg, #0a1628 0%, var(--navy) 100%);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #contact::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+
+    #contact > .container { position: relative; z-index: 1; }
     #contact h2 { color: var(--white); }
     #contact .section-label { color: #60a4e8; }
 
     .contact-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 1.25rem;
+      gap: 1.1rem;
       margin-top: 2rem;
     }
 
@@ -420,29 +742,34 @@
       display: flex;
       align-items: flex-start;
       gap: .85rem;
-      background: rgba(255,255,255,.07);
-      border-radius: 10px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 12px;
       padding: 1.2rem 1.4rem;
+      transition: background .25s;
     }
 
+    .contact-item:hover { background: rgba(255,255,255,.09); }
+
     .contact-icon {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       flex-shrink: 0;
       margin-top: .1rem;
     }
 
     .contact-item h4 {
-      font-size: .78rem;
+      font-size: .72rem;
       text-transform: uppercase;
-      letter-spacing: .06em;
-      color: #a8c4e0;
+      letter-spacing: .08em;
+      color: rgba(168,196,224,.6);
       margin-bottom: .2rem;
+      font-weight: 600;
     }
 
     .contact-item a, .contact-item span {
       color: var(--white);
       text-decoration: none;
-      font-size: .95rem;
+      font-size: .9rem;
       font-weight: 500;
     }
 
@@ -450,11 +777,12 @@
 
     /* ── FOOTER ── */
     footer {
-      background: #06101a;
-      color: #4a6580;
+      background: #060e17;
+      color: rgba(100,116,139,.6);
       text-align: center;
-      font-size: .82rem;
+      font-size: .78rem;
       padding: 1.4rem 2rem;
+      letter-spacing: .01em;
     }
   </style>
 </head>
@@ -463,7 +791,10 @@
   <!-- NAV -->
   <nav>
     <span class="logo">Ian Seisums Davis</span>
-    <ul>
+    <button class="hamburger" aria-label="Menu" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open');">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#experience">Experience</a></li>
@@ -475,22 +806,45 @@
 
   <!-- HERO -->
   <header class="hero">
+    <div class="hero-orb"></div>
     <div class="avatar"><img src="ian-s-davis.jpg" alt="Ian Seisums Davis"></div>
     <h1>Ian Seisums Davis</h1>
-    <p class="title">Sales Enablement Leader | Global GTM Enablement | Revenue Productivity | Seller Readiness</p>
-    <p class="hero-tagline">Building the systems that turn sellers into quota-crushers.</p>
+    <p class="title">Sales Enablement Leader | Global GTM Enablement | Revenue Productivity</p>
+    <p class="hero-tagline">Building the systems that make sellers great.</p>
     <div class="hero-cta">
       <a href="#contact" class="btn btn-primary">Get in Touch</a>
       <a href="#skills" class="btn btn-outline">View Skills</a>
     </div>
   </header>
 
+  <!-- STATS STRIP -->
+  <div class="stats-strip">
+    <div class="stats-grid">
+      <div class="stat-item stat-amber reveal">
+        <h3>$650M+</h3>
+        <p>Incremental Revenue</p>
+      </div>
+      <div class="stat-item stat-blue reveal reveal-delay-1">
+        <h3>35,000</h3>
+        <p>Sellers &amp; Partners</p>
+      </div>
+      <div class="stat-item stat-teal reveal reveal-delay-2">
+        <h3>30</h3>
+        <p>Countries</p>
+      </div>
+      <div class="stat-item stat-amber reveal reveal-delay-3">
+        <h3>+1.7%</h3>
+        <p>Win Rate Lift</p>
+      </div>
+    </div>
+  </div>
+
   <!-- ABOUT -->
   <section id="about">
     <div class="container">
-      <p class="section-label">About Me</p>
-      <h2>Turning Knowledge into Revenue</h2>
-      <p>
+      <p class="section-label reveal">About Me</p>
+      <h2 class="reveal">Turning Knowledge into Revenue</h2>
+      <p class="reveal">
         Revenue Enablement and Sales Enablement leader with 11 years of experience designing and operating
         enablement programs inside complex technical organizations — 5 years in enablement and program management
         and 6 years in technical writing. Built and scaled a flagship global accreditation program at AWS that
@@ -500,23 +854,23 @@
       </p>
 
       <div class="bio-grid">
-        <div class="bio-card">
+        <div class="bio-card reveal">
           <h3>Where I Work</h3>
           <p>My work sits at the intersection of sales strategy, learning design, and program architecture.
           I specialize in building systems that move sellers from onboarding to performance quickly.</p>
         </div>
-        <div class="bio-card">
+        <div class="bio-card reveal reveal-delay-1">
           <h3>Areas of Focus</h3>
           <p>Sales enablement strategy, GTM readiness programs, seller onboarding and certification,
           enablement technology ecosystems, and AI-driven sales coaching systems.</p>
         </div>
-        <div class="bio-card">
+        <div class="bio-card reveal reveal-delay-2">
           <h3>My Background</h3>
           <p>I started my career as a technical writer — translating complex systems into clear, usable content
           for engineers and developers. That foundation shapes how I approach enablement: with precision,
           structure, and a deep respect for how people actually learn.</p>
         </div>
-        <div class="bio-card">
+        <div class="bio-card reveal reveal-delay-3">
           <h3>Currently Exploring</h3>
           <p>Building personal projects with Claude Code and the Anthropic API — exploring how AI tools are reshaping the way enablement professionals work.</p>
         </div>
@@ -527,47 +881,63 @@
   <!-- SKILLS -->
   <section id="skills">
     <div class="container">
-      <p class="section-label">Core Competencies</p>
-      <h2>Skills &amp; Expertise</h2>
+      <p class="section-label reveal">Core Competencies</p>
+      <h2 class="reveal">Skills &amp; Expertise</h2>
 
       <div class="skills-grid">
-        <div class="skill-card">
-          <div class="skill-icon">🎯</div>
+        <div class="skill-card reveal">
+          <div class="skill-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
           <h3>Sales Enablement Strategy</h3>
           <p>Designing enablement systems that align directly to revenue goals, GTM priorities, and seller performance outcomes.</p>
         </div>
-        <div class="skill-card">
-          <div class="skill-icon">🚀</div>
-          <h3>GTM Readiness &amp; Launch Enablement</h3>
+        <div class="skill-card amber reveal reveal-delay-1">
+          <div class="skill-icon">
+            <svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/><path d="M12 2v4m0 12v4m10-10h-4M6 12H2"/></svg>
+          </div>
+          <h3>GTM Readiness &amp; Launch</h3>
           <p>Building launch readiness programs that equip field teams to sell new products and enter new markets with confidence.</p>
         </div>
-        <div class="skill-card">
-          <div class="skill-icon">🏅</div>
+        <div class="skill-card reveal reveal-delay-2">
+          <div class="skill-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 15l-3-3h6l-3 3z"/><path d="M20 7H4l8 8 8-8z"/><rect x="4" y="3" width="16" height="4" rx="1"/></svg>
+          </div>
           <h3>Competency-Based Accreditation</h3>
           <p>Architecting multi-tier certification programs with progressive assessment methodologies tied to measurable seller readiness.</p>
         </div>
-        <div class="skill-card">
-          <div class="skill-icon">🤝</div>
+        <div class="skill-card teal reveal reveal-delay-3">
+          <div class="skill-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
           <h3>Partner &amp; Channel Enablement</h3>
           <p>Extending enablement programs to partner ecosystems and channel organizations at global scale.</p>
         </div>
-        <div class="skill-card">
-          <div class="skill-icon">📊</div>
+        <div class="skill-card reveal">
+          <div class="skill-icon">
+            <svg viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+          </div>
           <h3>Enablement Analytics</h3>
           <p>Building executive dashboards and MBR reporting that track certification attainment, seller readiness, and program impact.</p>
         </div>
-        <div class="skill-card">
-          <div class="skill-icon">🤖</div>
+        <div class="skill-card amber reveal reveal-delay-1">
+          <div class="skill-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12h.01"/><path d="M17 12h.01"/><path d="M7 12h.01"/></svg>
+          </div>
           <h3>AI-Powered Sales Coaching</h3>
           <p>Designing AI-driven pitch evaluation and roleplay systems that scale coaching and eliminate manual manager review burden.</p>
         </div>
-        <div class="skill-card">
-          <div class="skill-icon">🛠️</div>
+        <div class="skill-card reveal reveal-delay-2">
+          <div class="skill-icon">
+            <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
           <h3>Enablement Technology</h3>
           <p>Administering Highspot, MindTickle, Cornerstone, Articulate Rise/Storyline, Salesforce, and Credly at enterprise scale.</p>
         </div>
-        <div class="skill-card">
-          <div class="skill-icon">✏️</div>
+        <div class="skill-card teal reveal reveal-delay-3">
+          <div class="skill-icon">
+            <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
           <h3>Learning Experience Design</h3>
           <p>Applying instructional design principles to build programs grounded in competency-based outcomes and adult learning theory.</p>
         </div>
@@ -578,24 +948,30 @@
   <!-- EXPERIENCE -->
   <section id="experience">
     <div class="container">
-      <p class="section-label">Work History</p>
-      <h2>Experience</h2>
+      <p class="section-label reveal">Work History</p>
+      <h2 class="reveal">Experience</h2>
 
-      <div class="exp-list">
+      <div class="timeline">
 
-        <div class="exp-card">
-          <img class="exp-logo" src="https://logo.clearbit.com/aws.amazon.com" alt="AWS logo"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-          <div class="exp-logo-fallback" style="display:none">AWS</div>
-          <div class="exp-body">
-            <h3>Senior Sales Enablement Program Manager <span style="font-weight:400;color:var(--muted);font-size:.85rem;">(de facto Enablement Program Owner)</span></h3>
-            <div class="exp-meta">Amazon Web Services (AWS) <span>Mar 2021 – Jan 2026</span></div>
+        <!-- AWS -->
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <img class="exp-logo" src="https://logo.clearbit.com/aws.amazon.com" alt="AWS logo"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="exp-logo-fallback" style="display:none">AWS</div>
+              <div class="timeline-header-text">
+                <h3>Senior Sales Enablement Program Manager <span>(de facto Enablement Program Owner)</span></h3>
+                <div class="exp-meta">Amazon Web Services (AWS) <span>Mar 2021 – Jan 2026</span></div>
+              </div>
+            </div>
             <p class="exp-note">Held an HR title of Senior Technical Writer but operated exclusively as a senior enablement program owner — planning, building, and running multiple flagship WWFE programs from day one.</p>
 
-            <div class="exp-section-label">Industry Accreditation Program — Crown Jewel</div>
+            <div class="exp-section-label">Industry Accreditation Program</div>
             <ul>
               <li>Built and owned the enablement foundation for AWS's transformation to an <strong>industry vertical sales model</strong></li>
-              <li>Scaled from <strong>8 → 18 industry verticals</strong>, reaching <strong>17,000+ of AWS's 35,000 worldwide field sellers and partners</strong> across 30 countries</li>
+              <li>Scaled from <strong>8 to 18 industry verticals</strong>, reaching <strong>17,000+ of AWS's 35,000 worldwide field sellers and partners</strong> across 30 countries</li>
               <li>Contributed to <strong>$650M+ in incremental revenue</strong></li>
               <li>Sellers completing L100 and L200 accreditations showed a <strong>1.7% higher win rate</strong> in the following six months (per AWS Business Intelligence analysis)</li>
               <li>Embedded <strong>MEDDPICC</strong> and AWS Way of Selling (AWOS) directly into certification architecture and assessment design</li>
@@ -611,13 +987,19 @@
           </div>
         </div>
 
-        <div class="exp-card">
-          <img class="exp-logo" src="https://logo.clearbit.com/epicgames.com" alt="Epic Games logo"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-          <div class="exp-logo-fallback" style="display:none">Epic</div>
-          <div class="exp-body">
-            <h3>Technical Writer</h3>
-            <div class="exp-meta">Epic Games <span>Nov 2018 – Mar 2021</span></div>
+        <!-- Epic Games -->
+        <div class="timeline-item reveal">
+          <div class="timeline-dot amber"></div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <img class="exp-logo" src="https://logo.clearbit.com/epicgames.com" alt="Epic Games logo"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="exp-logo-fallback" style="display:none">Epic</div>
+              <div class="timeline-header-text">
+                <h3>Technical Writer</h3>
+                <div class="exp-meta">Epic Games <span>Nov 2018 – Mar 2021</span></div>
+              </div>
+            </div>
             <ul>
               <li>Embedded technical writer on the <strong>Unreal Engine platform team</strong> — primary documentation contact for external developers building on UE, in partnership with platform teams at <strong>Microsoft, Sony, Nintendo, and Google</strong></li>
               <li>Modernized the team style guide from a static PDF to a <strong>living wiki</strong>, eliminating bottlenecks in documentation handoffs</li>
@@ -626,13 +1008,19 @@
           </div>
         </div>
 
-        <div class="exp-card">
-          <img class="exp-logo" src="https://logo.clearbit.com/bisimulations.com" alt="Bohemia Interactive Simulations logo"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-          <div class="exp-logo-fallback" style="display:none">BISim</div>
-          <div class="exp-body">
-            <h3>Technical Writer</h3>
-            <div class="exp-meta">Bohemia Interactive Simulations <span>Aug 2015 – Nov 2018</span></div>
+        <!-- Bohemia -->
+        <div class="timeline-item reveal">
+          <div class="timeline-dot amber"></div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <img class="exp-logo" src="https://logo.clearbit.com/bisimulations.com" alt="Bohemia Interactive Simulations logo"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="exp-logo-fallback" style="display:none">BISim</div>
+              <div class="timeline-header-text">
+                <h3>Technical Writer</h3>
+                <div class="exp-meta">Bohemia Interactive Simulations <span>Aug 2015 – Nov 2018</span></div>
+              </div>
+            </div>
             <ul>
               <li>Technical writer for <strong>Virtual Battlespace</strong> — a tactical training simulation platform used by <strong>DoD, NATO, and law enforcement agencies worldwide</strong></li>
               <li>Held <strong>sole US person status</strong> with exclusive responsibility for all <strong>ITAR-controlled content</strong> across the product suite</li>
@@ -642,13 +1030,19 @@
           </div>
         </div>
 
-        <div class="exp-card">
-          <img class="exp-logo" src="https://logo.clearbit.com/fullsail.edu" alt="Full Sail University logo"
-               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-          <div class="exp-logo-fallback" style="display:none">Full Sail</div>
-          <div class="exp-body">
-            <h3>Associate Course Director</h3>
-            <div class="exp-meta">Full Sail University <span>Jan 2005 – Aug 2015</span></div>
+        <!-- Full Sail -->
+        <div class="timeline-item reveal">
+          <div class="timeline-dot teal"></div>
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <img class="exp-logo" src="https://logo.clearbit.com/fullsail.edu" alt="Full Sail University logo"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+              <div class="exp-logo-fallback" style="display:none">Full Sail</div>
+              <div class="timeline-header-text">
+                <h3>Associate Course Director</h3>
+                <div class="exp-meta">Full Sail University <span>Jan 2005 – Aug 2015</span></div>
+              </div>
+            </div>
             <ul>
               <li>Designed and delivered <strong>competency-based curriculum</strong> for Technical Writing, Engineering Composition, and Professional Communication — managing cohorts of <strong>10–80 students per term</strong> across a 10-year tenure</li>
               <li>Built courses from scratch: syllabi, learning objectives, rubrics, and assessments grounded in industry-relevant outcomes</li>
@@ -664,33 +1058,31 @@
   <!-- SAMPLES -->
   <section id="samples">
     <div class="container">
-      <p class="section-label">Work Samples</p>
-      <h2>Communication Craft</h2>
-      <p>My enablement work at AWS is internal and confidential. The samples below are from my technical writing career and show the documentation foundation that informs how I build enablement programs today.</p>
+      <p class="section-label reveal">Work Samples</p>
+      <h2 class="reveal">Communication Craft</h2>
+      <p class="reveal">My enablement work at AWS is internal and confidential. The samples below are from my technical writing career and show the documentation foundation that informs how I build enablement programs today.</p>
 
       <div class="samples-grid">
-
-        <a class="sample-card" href="Gears_Studio_Community.pdf" target="_blank" rel="noopener">
-          <span class="sample-type">📄 PDF</span>
+        <a class="sample-card reveal" href="Gears_Studio_Community.pdf" target="_blank" rel="noopener">
+          <span class="sample-type">PDF</span>
           <h3>Gears Studio Community</h3>
           <p>Community documentation and instructional content produced during tenure at Bohemia Interactive Simulations.</p>
           <span class="sample-link">View PDF &rarr;</span>
         </a>
 
-        <a class="sample-card" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/installing-unreal-engine?application_version=4.27" target="_blank" rel="noopener">
-          <span class="sample-type">🌐 Live Doc</span>
+        <a class="sample-card reveal reveal-delay-1" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/installing-unreal-engine?application_version=4.27" target="_blank" rel="noopener">
+          <span class="sample-type">Live Doc</span>
           <h3>Installing Unreal Engine</h3>
           <p>Official Unreal Engine 4.27 installation guide for developers. Written and maintained during role as Technical Writer at Epic Games.</p>
           <span class="sample-link">View Documentation &rarr;</span>
         </a>
 
-        <a class="sample-card" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/mobile-previewer?application_version=4.27" target="_blank" rel="noopener">
-          <span class="sample-type">🌐 Live Doc</span>
+        <a class="sample-card reveal reveal-delay-2" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/mobile-previewer?application_version=4.27" target="_blank" rel="noopener">
+          <span class="sample-type">Live Doc</span>
           <h3>Mobile Previewer</h3>
           <p>Unreal Engine 4.27 documentation for the Mobile Previewer tool, enabling developers to test projects across mobile platforms from the editor.</p>
           <span class="sample-link">View Documentation &rarr;</span>
         </a>
-
       </div>
     </div>
   </section>
@@ -698,22 +1090,22 @@
   <!-- EDUCATION -->
   <section id="education">
     <div class="container">
-      <p class="section-label">Education &amp; Certifications</p>
-      <h2>Credentials</h2>
+      <p class="section-label reveal">Education &amp; Certifications</p>
+      <h2 class="reveal">Credentials</h2>
       <div class="bio-grid">
-        <div class="bio-card">
+        <div class="bio-card reveal">
           <h3>MFA in Creative Writing</h3>
           <p>Full Sail University</p>
         </div>
-        <div class="bio-card">
-          <h3>BA in English</h3>
+        <div class="bio-card reveal reveal-delay-1">
+          <h3>BA in English, Minor in Film</h3>
           <p>Florida State University</p>
         </div>
-        <div class="bio-card">
+        <div class="bio-card reveal reveal-delay-2">
           <h3>AWS Cloud Practitioner</h3>
           <p>Amazon Web Services</p>
         </div>
-        <div class="bio-card">
+        <div class="bio-card reveal reveal-delay-3">
           <h3>Anthropic Academy</h3>
           <p>Claude 101 | AI Fluency | Introduction to MCP | Claude Code in Action</p>
         </div>
@@ -724,46 +1116,39 @@
   <!-- CONTACT -->
   <section id="contact">
     <div class="container">
-      <p class="section-label">Contact</p>
-      <h2>Let's Connect</h2>
-      <p style="color:#a8c4e0;">
+      <p class="section-label reveal">Contact</p>
+      <h2 class="reveal">Let's Connect</h2>
+      <p class="reveal" style="color:rgba(168,196,224,.7); margin-bottom: .5rem;">
         I'm always open to new conversations — whether it's a collaboration, a new opportunity, or just talking shop about sales enablement.
       </p>
 
       <div class="contact-grid">
-        <div class="contact-item">
+        <div class="contact-item reveal">
           <span class="contact-icon">✉️</span>
           <div>
             <h4>Email</h4>
             <a id="email-link" href="#">Email</a>
           </div>
         </div>
-        <div class="contact-item">
+        <div class="contact-item reveal reveal-delay-1">
           <span class="contact-icon">💼</span>
           <div>
             <h4>LinkedIn</h4>
             <a href="https://www.linkedin.com/in/ian-h-seisums-davis" target="_blank" rel="noopener">linkedin.com/in/ian-h-seisums-davis</a>
           </div>
         </div>
-        <div class="contact-item">
+        <div class="contact-item reveal reveal-delay-2">
           <span class="contact-icon">📞</span>
           <div>
             <h4>Phone</h4>
             <a id="phone-link" href="#">Phone</a>
           </div>
         </div>
-        <div class="contact-item">
+        <div class="contact-item reveal reveal-delay-3">
           <span class="contact-icon">📍</span>
           <div>
             <h4>Location</h4>
             <span>Northern Virginia (open to relocation)</span>
-          </div>
-        </div>
-        <div class="contact-item">
-          <span class="contact-icon">🕐</span>
-          <div>
-            <h4>Availability</h4>
-            <span>Open to opportunities</span>
           </div>
         </div>
       </div>
@@ -776,9 +1161,28 @@
   </footer>
 
   <script>
-    // Email assembly — keeps address out of HTML source
-    const user = 'ianoftheyear';
-    const domain = 'gmail.com';
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Close mobile nav on link click
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.addEventListener('click', () => {
+        document.querySelector('.hamburger').classList.remove('active');
+        document.querySelector('.nav-links').classList.remove('open');
+      });
+    });
+
+    // Email assembly
+    const user = 'ian';
+    const domain = 'ianseisumsdavis.com';
     const email = user + '@' + domain;
     const emailLink = document.getElementById('email-link');
     if (emailLink) {
@@ -786,7 +1190,7 @@
       emailLink.textContent = email;
     }
 
-    // Phone assembly — keeps number out of HTML source
+    // Phone assembly
     const areaCode = '407';
     const prefix = '267';
     const line = '6891';
