@@ -806,7 +806,7 @@
 
     <p>I spent five years building enablement programs at AWS around a simple belief: the fastest way to move a seller from onboarded to productive is to build the scaffolding <strong class="hl">as a system</strong>, not as a pile of courses. That meant competency models, multi-tier assessment architecture, and programs that measured readiness, not attendance.</p>
 
-    <p>Since being laid off in January, I've been applying that same frame to the tools reshaping enablement: <strong>Claude Code, the Claude API, and MCP</strong>. This site is the first artifact of that, built from scratch in Claude Code, one file, versioned on GitHub. Next up: a Claude-API-powered pitch evaluator that does first-pass scoring on seller roleplays, freeing manager review for the judgment-intensive 20% that actually matters.</p>
+    <p>Since being laid off in January, I've been applying that same frame to the tools reshaping enablement: <strong>Claude Code, the Claude API, and MCP</strong>. This site is the first artifact of that, built from scratch in Claude Code, one file, versioned on GitHub. The second: <a href="https://elevator-pitch-evaluator.vercel.app" target="_blank" rel="noopener">a Claude-API-powered pitch evaluator</a> that does first-pass scoring on seller roleplays, freeing manager review for the judgment-intensive 20% that actually matters.</p>
   </section>
 
   <aside class="margin">
@@ -1008,6 +1008,15 @@
     <div class="samples">
 
       <article class="sample">
+        <span class="kind">Live demo · Claude API</span>
+        <div>
+          <h3>Elevator Pitch Evaluator</h3>
+          <p>A coaching tool for sellers: record a 60–90 second pitch (audio or video) and get scored against a 5-dimension rubric with concrete coaching notes from Claude Opus. Built from scratch in Claude Code; calibration locked to stdev 0 on the audio rubric via an n=20 borderline study; visual coaching added as qualitative-not-scored to avoid the noise Highspot's percent-in-frame metric introduces. <a href="https://github.com/IanHSDavis/elevator-pitch-evaluator" target="_blank" rel="noopener">Source on GitHub</a>.</p>
+        </div>
+        <a href="https://elevator-pitch-evaluator.vercel.app" class="link" target="_blank" rel="noopener">Try the demo →</a>
+      </article>
+
+      <article class="sample">
         <span class="kind">Public credential · Credly</span>
         <div>
           <h3>AWS Industry Accreditation, public badge collection</h3>
@@ -1050,8 +1059,8 @@
     <span class="mn-label">NDA note</span>
     <p>All AWS internal artifacts are covered by NDA, and access was revoked at layoff. The Credly collection is the public fingerprint the program left behind, third-party-hosted, independently verifiable.</p>
     <hr>
-    <span class="mn-label">Still to ship</span>
-    <p>A public Claude-API <b>pitch evaluator demo</b> is the next artifact to land in this list, built fresh from scratch, no NDA surface.</p>
+    <span class="mn-label">Shipped</span>
+    <p>The Claude-API <b>pitch evaluator</b> is live (top of the list above). Built fresh, no NDA surface, calibrated against a borderline study to lock the score determinism.</p>
   </aside>
 
   <!-- ============ §06 TOOLS & STACK ============ -->
